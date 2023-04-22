@@ -13,9 +13,9 @@ const app = express();
 
 // Define some constants
 const maxSequenceLength = 512; // Define the maximum sequence length
-const trainingData = JSON.parse(fs.readFileSync(process.cwd() + '/training-data.json'));
-const vocabPath = process.cwd() + '/vocab.json';
-const modelPath = 'file://' + process.cwd() + '/model/model.json';
+const trainingData = JSON.parse(fs.readFileSync('/training-data.json'));
+const vocabPath = '/vocab.json';
+const modelPath = '/model/model.json';
 
 
 // Load the saved model
