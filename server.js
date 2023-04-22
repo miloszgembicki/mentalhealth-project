@@ -98,6 +98,12 @@ async function predictOutput(input) {
     return outputCategory !== undefined ? outputCategory : defaultMessage;
 }
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 // Handle POST requests to /predict
 app.post('/predict', async (req, res) => {
     let body = '';
