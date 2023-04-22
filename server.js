@@ -116,9 +116,9 @@ app.post('/predict', async (req, res) => {
 
 // Handle GET requests to /
 app.get('/', (req, res) => {
-    const filePath = path.join(__dirname, 'index.html');
     fs.readFile(filePath, (err, data) => {
         if (err) {
+            res.send('Working!!');
             res.writeHead(500, { 'Content-Type': 'text/plain' });
             res.write('Error loading index.html');
             res.end();
