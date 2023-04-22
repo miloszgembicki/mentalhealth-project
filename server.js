@@ -13,14 +13,12 @@ const app = express();
 
 // Define some constants
 const maxSequenceLength = 512; // Define the maximum sequence length
-const trainingData = JSON.parse(fs.readFileSync('/training-data.json'));
-const vocabPath = '/vocab.json';
-const modelPath = '/model/model.json';
-
+const trainingData = JSON.parse(fs.readFileSync('training-data.json'));
+const modelPath = 'file://./model/model.json';
+const vocabPath = 'vocab.json';
 
 // Load the saved model
-const modelPromise = tf.loadLayersModel(tf.io.fileSystem(modelPath));
-
+const modelPromise = tf.loadLayersModel(modelPath);
 
 // Create a sentiment analyzer object
 const analyzer = new SentimentAnalyzer('English', stemmer, 'afinn');
@@ -98,6 +96,9 @@ async function predictOutput(input) {
     return outputCategory !== undefined ? outputCategory : defaultMessage;
 }
 
+// Serve the static files in the public folder
+app.use(express.static('public'));
+
 // Handle POST requests to /predict
 app.post('/predict', async (req, res) => {
     let body = '';
@@ -116,9 +117,9 @@ app.post('/predict', async (req, res) => {
 
 // Handle GET requests to /
 app.get('/', (req, res) => {
+    const filePath = path.join(__dirname, 'index.html');
     fs.readFile(filePath, (err, data) => {
         if (err) {
-            res.send('Working!!');
             res.writeHead(500, { 'Content-Type': 'text/plain' });
             res.write('Error loading index.html');
             res.end();
@@ -130,4 +131,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 5000);
+const port = 3000;
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});
