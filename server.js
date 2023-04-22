@@ -13,12 +13,14 @@ const app = express();
 
 // Define some constants
 const maxSequenceLength = 512; // Define the maximum sequence length
-const trainingData = JSON.parse(fs.readFileSync('training-data.json'));
-const modelPath = 'file://./model/model.json';
-const vocabPath = 'vocab.json';
+const trainingData = JSON.parse(fs.readFileSync(process.cwd() + '/training-data.json'));
+const vocabPath = process.cwd() + '/vocab.json';
+const modelPath = 'file://' + process.cwd() + '/model/model.json';
+
 
 // Load the saved model
-const modelPromise = tf.loadLayersModel(modelPath);
+const modelPromise = tf.loadLayersModel(tf.io.fileSystem(modelPath));
+
 
 // Create a sentiment analyzer object
 const analyzer = new SentimentAnalyzer('English', stemmer, 'afinn');
@@ -95,9 +97,6 @@ async function predictOutput(input) {
     const defaultMessage = 'I am not sure what you mean. Could you please rephrase your question?';
     return outputCategory !== undefined ? outputCategory : defaultMessage;
 }
-
-// Serve the static files in the public folder
-app.use(express.static('public'));
 
 // Handle POST requests to /predict
 app.post('/predict', async (req, res) => {
