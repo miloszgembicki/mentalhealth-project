@@ -3,8 +3,8 @@ var cacheFiles = [
     "index.html",
     // "subjects.j",
     "public/character-image.jpg",
-    "landscape.jpg",
-    "mental.jpg"
+    "public/landscape.jpg",
+    "public/mental.jpg"
 ];
 self.addEventListener("install", function (e) {
     console.log("[Service Worker] Install");
