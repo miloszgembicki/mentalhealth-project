@@ -7,6 +7,7 @@ const SentimentAnalyzer = require('natural').SentimentAnalyzer;
 const stemmer = require('natural').PorterStemmer;
 const path = require('path');
 const express = require('express');
+const cors = require("cors");
 
 // Create a new express app
 const app = express();
@@ -97,7 +98,7 @@ async function predictOutput(input) {
 }
 
 // Serve the static files in the public folder
-app.use(express.static('public'));
+app.use(cors());
 
 // Handle POST requests to /predict
 app.post('/predict', async (req, res) => {
