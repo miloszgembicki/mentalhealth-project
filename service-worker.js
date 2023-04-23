@@ -1,10 +1,8 @@
 var cacheName = "classes-v1";
 var cacheFiles = [
     "index.html",
-    // "subjects.j",
-    "public/character-image.jpg",
+    // "subjects.j",3
     "public/landscape.jpg",
-    "public/mental.jpg"
 ];
 self.addEventListener("install", function (e) {
     console.log("[Service Worker] Install");
