@@ -118,7 +118,7 @@ app.post('/predict', async (req, res) => {
 
 // Handle GET requests to /
 app.get('/', (req, res) => {
-  const url = 'https://raw.githubusercontent.com/miloszgembicki/mentalhealth-project/blob/main/index.html';
+  const url = 'https://git.heroku.com/mentalhealth-chatbot.git/index.html';
 
   request(url, (error, response, body) => {
     if (error || response.statusCode !== 200) {
