@@ -14,9 +14,9 @@ const app = express();
 
 // Define some constants
 const maxSequenceLength = 512; // Define the maximum sequence length
-const trainingData = JSON.parse(fs.readFileSync('training-data.json'));
-const modelPath = 'file://./model/model.json';
-const vocabPath = 'vocab.json';
+const trainingData = JSON.parse(fs.readFileSync('../training-data.json'));
+const modelPath = 'file://../model/model.json';
+const vocabPath = '../vocab.json';
 
 // Load the saved model
 const modelPromise = tf.loadLayersModel(modelPath);
