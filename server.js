@@ -118,7 +118,7 @@ app.post('/predict', async (req, res) => {
 
 // Handle GET requests to /
 app.get('/', (req, res) => {
-    const filePath = path.join(__dirname, 'index.html');
+    const filePath = path.join('index.html');
     fs.readFile(filePath, (err, data) => {
         if (err) {
             res.writeHead(500, { 'Content-Type': 'text/plain' });
@@ -132,7 +132,7 @@ app.get('/', (req, res) => {
     });
 });
 
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });

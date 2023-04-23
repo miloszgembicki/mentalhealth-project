@@ -118,7 +118,7 @@
         submitButton.addEventListener('click', (event) => {
             event.preventDefault(); // prevent form submission
             const inputValue = input.value; // get the user input
-            fetch('http://localhost:3000/predict', { // send the user input to the server to get a sentiment prediction
+            fetch('https://mentalhealth-chatbot.herokuapp.com/predict', { // send the user input to the server to get a sentiment prediction
                 method: 'POST',
                 body: JSON.stringify({ input: inputValue }),
                 headers: {
