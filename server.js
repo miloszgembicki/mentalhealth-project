@@ -118,19 +118,19 @@ app.post('/predict', async (req, res) => {
 
 // Handle GET requests to /
 app.get('/', (req, res) => {
-    const filePath = path.join(__dirname, 'index.html');
-    fs.readFile(filePath, (err, data) => {
-        if (err) {
-            res.writeHead(500, { 'Content-Type': 'text/plain' });
-            res.write('Error loading index.html');
-            res.end();
-        } else {
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write(data);
-            res.end();
-        }
-    });
+  const url = 'https://raw.githubusercontent.com/miloszgembicki/mentalhealth-project/blob/main/index.html';
+
+  request(url, (error, response, body) => {
+    if (error || response.statusCode !== 200) {
+      res.status(500).send('Error loading index.html');
+      return;
+    }
+
+    res.setHeader('Content-Type', 'text/html');
+    res.send(body);
+  });
 });
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
