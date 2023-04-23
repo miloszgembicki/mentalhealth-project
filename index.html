@@ -118,7 +118,7 @@
         submitButton.addEventListener('click', (event) => {
             event.preventDefault(); // prevent form submission
             const inputValue = input.value; // get the user input
-            fetch('http://8e63-82-132-230-85.ngrok.io/predict', { // send the user input to the server to get a sentiment prediction
+            fetch('https://8e63-82-132-230-85.ngrok.io/predict', { // send the user input to the server to get a sentiment prediction
                 method: 'POST',
                 mode: 'no-cors',
                 body: JSON.stringify({ input: inputValue }),
