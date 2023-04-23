@@ -10,7 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tensorflow/tfjs": "^4.4.0",
     "cors": "^2.8.5",
-    "localtunnel": "^2.0.2"
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "heroku-local": "^4.2.0",
+    "natural": "^6.2.0",
+    "path": "^0.12.7",
+    "@tensorflow/tfjs-node": "^1.2.7"
   }
 }
