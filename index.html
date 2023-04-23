@@ -3,8 +3,8 @@
 
 <head>
     <title>Chatbot</title>
-    <link rel="manifest" href="petstore.webmanifest">
-    <link rel="stylesheet" type="text/css" href="public/style.css">
+    <link rel="manifest" href="mentalhealth.webmanifest">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://kit.fontawesome.com/ad79393abb.js" crossorigin="anonymous"></script>
 </head>
 
@@ -118,7 +118,7 @@
         submitButton.addEventListener('click', (event) => {
             event.preventDefault(); // prevent form submission
             const inputValue = input.value; // get the user input
-            fetch('/predict', { // send the user input to the server to get a sentiment prediction
+            fetch('http://localhost:3000/predict', { // send the user input to the server to get a sentiment prediction
                 method: 'POST',
                 body: JSON.stringify({ input: inputValue }),
                 headers: {
