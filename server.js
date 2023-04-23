@@ -14,9 +14,9 @@ const app = express();
 
 // Define some constants
 const maxSequenceLength = 512; // Define the maximum sequence length
-const trainingData = JSON.parse(fs.readFileSync('training-data.json'));
-const modelPath = 'file://model/model.json';
-const vocabPath = 'vocab.json';
+const trainingData = JSON.parse(fs.readFileSync('../training-data.json'));
+const modelPath = 'file://../model/model.json';
+const vocabPath = '../vocab.json';
 
 // Load the saved model
 const modelPromise = tf.loadLayersModel(modelPath);
@@ -118,12 +118,16 @@ app.post('/predict', async (req, res) => {
 
 // Handle GET requests to /
 app.get('/', (req, res) => {
-    const filePath = path.join(__dirname, 'index.html');
+    const filePath = path.join('index.html');
     fs.readFile(filePath, (err, data) => {
-        if(err) {
-            res.status(500).send('Error loading index.html');
-        }else {
-            res.status(200).send(data);
+        if (err) {
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.write('Error loading index.html');
+            res.end();
+        } else {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(data);
+            res.end();
         }
     });
 });
