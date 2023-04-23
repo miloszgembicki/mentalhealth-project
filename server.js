@@ -118,7 +118,7 @@ app.post('/predict', async (req, res) => {
 
 // Handle GET requests to /
 app.get('/', (req, res) => {
-    const filePath = path.join('index.html');
+    const filePath = path.join(__dirname, 'index.html');
     fs.readFile(filePath, (err, data) => {
         if (err) {
             res.writeHead(500, { 'Content-Type': 'text/plain' });
